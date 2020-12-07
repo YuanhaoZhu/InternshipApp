@@ -26,7 +26,7 @@ class Employee(db.Model):
     #assignments = db.relationship('Assignment', cascade = 'delete') #when delete task go ahead to delete subtasks
     #employers = db.relationship('Employer', secondary = association_table1, back_populates='employees')
     # students = db.relationship('User', secondary = association_table2, back_populates='courses_s')
-    job_accepted = db.Column(db.Integer, db.ForeignKey("joboffer.id"), nullable=False)
+    job_accepted = db.Column(db.Integer, nullable=False) # not using foreign key, because want to use -1 to represent None
     past_work_experience = db.Column(db.String)
     start_month = db.Column(db.Integer, nullable=False)
     end_month = db.Column(db.Integer, nullable=False)
@@ -42,7 +42,8 @@ class Employee(db.Model):
         self.start_month = kwargs.get("start_month", 0)
         self.end_month = kwargs.get("end_month", 0)
         self.email = kwargs.get("email", "")
-
+        self.job_accepted = -1
+        
     def serialize(self):
         return{
             'id': self.id,
@@ -53,6 +54,7 @@ class Employee(db.Model):
             "past_work_experience": self.past_work_experience,
             "start_month": start_month,
             "end_month": end_month,
+            "job_accepted": "None" if self.job_accepted == -1 else Joboffer.query.filter_by(id = self.job_accepted).first().title,
             "prefered_position": [t.title for t in PreferedPosition.query.filter_by(employee_id=self.id).all()]
             #'employers': [t.serialize() for t in self.employers],
             # 'instructors':[t.serialize() for t in self.instructors],
@@ -116,15 +118,17 @@ class Joboffer(db.Model):
     __tablename__ = 'joboffer'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
-    employer_id = db.Column(db.Integer, db.ForeignKey('employer.id'), nullable=False) #foreign key must be table name
+    employer_id = db.Column(db.Integer, db.ForeignKey('employer.id'), nullable=False)
     start_month = db.Column(db.Integer, nullable=False)
     end_month = db.Column(db.Integer, nullable=False)
+    open_slots = db.Column(db.Integer, nullable=False)
 
     def __init__(self, **kwargs):
         self.title = kwargs.get('title', '')
         self.employer_id = kwargs.get('employer_id')
         self.start_month = kwargs.get("start_month", 0)
         self.end_month = kwargs.get("end_month", 0)
+        self.open_slots = kwargs.ger("open_slots", 0)
        
     def serialize(self):
         return{
