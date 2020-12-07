@@ -70,7 +70,7 @@ class Employee(db.Model):
     #         'instructors':[],
     #         'students': [],
     #     }
-class PreferedPosition(db.model):
+class PreferedPosition(db.Model):
     __tablename__ = 'preferedposition'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
