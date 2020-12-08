@@ -5,7 +5,7 @@ import json
 
 
 app = Flask(__name__)
-db_filename = "cms.db"
+db_filename = "data.db"
 default_picture = "someLink.jpg"
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///%s" % db_filename
