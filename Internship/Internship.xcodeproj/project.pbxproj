@@ -17,6 +17,8 @@
 		F3F9182C257EB9EF00E72EBF /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3F91829257EB9EF00E72EBF /* Rubik-Medium.ttf */; };
 		F3F9182D257EB9EF00E72EBF /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3F9182A257EB9EF00E72EBF /* Rubik-Regular.ttf */; };
 		F3F9182E257EB9EF00E72EBF /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3F9182B257EB9EF00E72EBF /* Rubik-Light.ttf */; };
+		F3F91837258014D000E72EBF /* PositionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F91836258014D000E72EBF /* PositionCollectionViewCell.swift */; };
+		F3F9183A2580220E00E72EBF /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F918392580220E00E72EBF /* Position.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		F3F91829257EB9EF00E72EBF /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
 		F3F9182A257EB9EF00E72EBF /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		F3F9182B257EB9EF00E72EBF /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
+		F3F91836258014D000E72EBF /* PositionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionCollectionViewCell.swift; sourceTree = "<group>"; };
+		F3F918392580220E00E72EBF /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,8 @@
 				F3F91829257EB9EF00E72EBF /* Rubik-Medium.ttf */,
 				F3F9182A257EB9EF00E72EBF /* Rubik-Regular.ttf */,
 				F3F91823257EB73300E72EBF /* StudentViewController.swift */,
+				F3F918392580220E00E72EBF /* Position.swift */,
+				F3F91836258014D000E72EBF /* PositionCollectionViewCell.swift */,
 				F3F91826257EB75800E72EBF /* RecruiterViewController.swift */,
 				F3F91816257EB12D00E72EBF /* Assets.xcassets */,
 				F3F91818257EB12D00E72EBF /* LaunchScreen.storyboard */,
@@ -151,6 +157,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3F9183A2580220E00E72EBF /* Position.swift in Sources */,
+				F3F91837258014D000E72EBF /* PositionCollectionViewCell.swift in Sources */,
 				F3F91824257EB73300E72EBF /* StudentViewController.swift in Sources */,
 				F3F91812257EB12B00E72EBF /* ViewController.swift in Sources */,
 				F3F91827257EB75800E72EBF /* RecruiterViewController.swift in Sources */,
