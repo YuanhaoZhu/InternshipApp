@@ -82,7 +82,7 @@ class PreferedPosition(db.Model):
 
     def __init__(self, **kwargs):
         self.title = kwargs.get('title', '')
-	self.employee_id = kwargs.get('employee_id')
+        self.employee_id = kwargs.get('employee_id')
         self.employer_id = kwargs.get('employer_id')
         self.start_month = kwargs.get("start_month", 0)
         self.end_month = kwargs.get("end_month", 0)
@@ -94,9 +94,9 @@ class PreferedPosition(db.Model):
             'title': self.title,
             'employee_id': self.employee_id,
             'employer_id': self.employer_id,
-	    'start_month': self.start_month,
-	    'end_month': self.end_month,
-	    'open_slots': self.open_slots,
+	        'start_month': self.start_month,
+	        'end_month': self.end_month,
+	        'open_slots': self.open_slots,
         }
     
 class Employer(db.Model):
