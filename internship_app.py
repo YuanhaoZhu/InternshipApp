@@ -79,7 +79,7 @@ def get_employer(employer_id):
         return failure_response('Employer not found!')
     return success_response(employer.serialize())
 
-@app.route("/api/employees/acceptOffer/", methods=["POST"])
+@app.route("/api/employees/<int:employee_id>/acceptOffer/", methods=["POST"])
 def add_employer():
     employee = Employee.query.filter_by(id=employee_id).first()
     if employee is None:

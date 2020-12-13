@@ -154,7 +154,7 @@ class Joboffer(db.Model):
         return{
             'id': self.id,
             'title': self.title,
-            'employer_id': int(self.duration),
+            'employer_id': self.employer_id,
 	    	'start_month': self.start_month,
 	    	'end_month': self.end_month,
 	    	'open_slots': self.open_slots,
