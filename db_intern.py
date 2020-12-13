@@ -4,14 +4,14 @@ db = SQLAlchemy() #db is an instance of sqlalchemy
 association_table1 = db.Table(
 	"association_table1",
 	db.Model.metadata,
-	db.Column("employee_id", db.Integer, db.ForeignKey("employee.id")),   
+	db.Column("employee_id", db.Integer, db.ForeignKey("employee.id")),
 	db.Column("employer_id", db.Integer, db.ForeignKey("employer.id"))
 )
 
 # association_table2 = db.Table(
 # 	"association_table2",
 # 	db.Model.metadata,
-# 	db.Column("course_id", db.Integer, db.ForeignKey("course.id")),   
+# 	db.Column("course_id", db.Integer, db.ForeignKey("course.id")),
 #     db.Column("student_id", db.Integer, db.ForeignKey("user.id"))
 # )
 
@@ -31,7 +31,7 @@ class Employee(db.Model):
     start_month = db.Column(db.Integer, nullable=False)
     end_month = db.Column(db.Integer, nullable=False)
     email = db.Column(db.String)
-    
+
 
     def __init__(self, **kwargs):
         self.name = kwargs.get('name', "")
@@ -43,7 +43,7 @@ class Employee(db.Model):
         self.end_month = kwargs.get("end_month", 0)
         self.email = kwargs.get("email", "")
         self.job_accepted = -1
-        
+
     def serialize(self):
         return{
             'id': self.id,
@@ -55,10 +55,8 @@ class Employee(db.Model):
             "start_month": self.start_month,
             "end_month": self.end_month,
             "job_accepted": "None" if self.job_accepted == -1 else Joboffer.query.filter_by(id = self.job_accepted).first().title,
-            "prefered_position": [t.title for t in PreferedPosition.query.filter_by(employee_id=self.id).all()]
-            #'employers': [t.serialize() for t in self.employers],
-            # 'instructors':[t.serialize() for t in self.instructors],
-            # 'students': [t.serialize() for t in self.students],
+            "prefered_position": [t.title for t in PreferedPosition.query.filter_by(employee_id=self.id).all()],
+            "email": self.email
         }
 
     # def serialize2(self):
@@ -87,7 +85,7 @@ class PreferedPosition(db.Model):
         self.start_month = kwargs.get("start_month", 0)
         self.end_month = kwargs.get("end_month", 0)
         self.open_slots = kwargs.ger("open_slots", 0)
-    
+
     def serialize(self):
         return{
             'id': self.id,
@@ -98,7 +96,7 @@ class PreferedPosition(db.Model):
 	        'end_month': self.end_month,
 	        'open_slots': self.open_slots,
         }
-    
+
 class Employer(db.Model):
     __tablename__ = 'employer'
     id = db.Column(db.Integer, primary_key=True)
@@ -106,7 +104,7 @@ class Employer(db.Model):
     location = db.Column(db.String, nullable=False)
     picture = db.Column(db.String, nullable=False)
     # employees = db.relationship('Employee', secondary = association_table2, back_populates='employers')
-    # courses_i = db.relationship('Course', secondary = association_table1, back_populates='instructors')   
+    # courses_i = db.relationship('Course', secondary = association_table1, back_populates='instructors')
 
     def __init__(self, **kwargs):
         self.name = kwargs.get('name', '')
@@ -121,22 +119,21 @@ class Employer(db.Model):
         'location':self.location,
         "picture": self.picture,
         "job_offer": [t.title for t in Joboffer.query.filter_by(employer_id=self.id).all()]
-        #'employees': [],
     }
 
     # def serialize2(self):
     #     course = []
     #     for c in self.courses_s:
-    #         course.append(c.serialize2()) 
+    #         course.append(c.serialize2())
     #     for c in self.courses_i:
-    #         course.append(c.serialize2()) 
+    #         course.append(c.serialize2())
     #     return{
     #         'id': self.id,
     #         'name': self.name,
     #         'netid': self.netid,
     #         'courses': course,
     #     }
-        
+
 class Joboffer(db.Model):
     __tablename__ = 'joboffer'
     id = db.Column(db.Integer, primary_key=True)
@@ -152,15 +149,13 @@ class Joboffer(db.Model):
         self.start_month = kwargs.get("start_month", 0)
         self.end_month = kwargs.get("end_month", 0)
         self.open_slots = kwargs.ger("open_slots", 0)
-       
+
     def serialize(self):
         return{
             'id': self.id,
             'title': self.title,
             'employer_id': int(self.duration),
-	    'start_month': self.start_month,
-	    'end_month': self.end_month,
-	    'open_slots': self.open_slots,
+	    	'start_month': self.start_month,
+	    	'end_month': self.end_month,
+	    	'open_slots': self.open_slots,
         }
-
-
