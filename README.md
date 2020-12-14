@@ -42,7 +42,6 @@ requires input {
             "past_work_experience": employee1 past_work_experience,
             "start_month": employee1 start_month,
             "end_month": employee1 end_month,
-            "job_accepted": id of the job accepted employee1,
             "email": email of employee1
         }
 returns the information of the newly created employee
