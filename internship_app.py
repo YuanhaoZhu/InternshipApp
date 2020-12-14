@@ -233,6 +233,12 @@ def delete_job_offer(job_offer_id):
     db.session.commit()
     return success_response(job_offer.serialize())
 
+@app.route("/api/employees/filter_by_location")
+def filter_employees_by_location():
+    body = json.loads(request.data)
+    location = body.get('location')
+    return success_response([t.serialize() for t in Employee.query.filter_by(location=location).all()])
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
