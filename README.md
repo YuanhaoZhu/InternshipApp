@@ -236,3 +236,10 @@ returns the information of the deleted job offer
 	'open_slots': open_slots,
     'position': position of the offer
 }}
+
+link/api/employees/filter_by_location/ [GET] returns all employees with the given location
+requires input
+{
+    "location": the location
+}
+returns a list of employees
