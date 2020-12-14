@@ -4,6 +4,9 @@ all failure responses are {"success": False, "error": the error message}
 
 let link = the heroku link for the app
 
+All start_month and end_month should be in format "Jan", "Feb", "Mar", "Apr",
+"May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+
 link/api/employees/ [GET] returns a list of all employees
 returns json file {"success": true, "data": [{
             'id': employee1 id,
@@ -15,7 +18,7 @@ returns json file {"success": true, "data": [{
             "start_month": employee1 start_month,
             "end_month": employee1 end_month,
             "job_accepted": id of the job accepted employee1,
-            "prefered_position": list of prefered positions of employee1,
+            "preferred_position": list of preferred positions of employee1,
             "email": email of employee1
         }, 
         {
@@ -28,7 +31,7 @@ returns json file {"success": true, "data": [{
             "start_month": employee2 start_month,
             "end_month": employee2 end_month,
             "job_accepted": id of the job accepted employee2,
-            "prefered_position": list of prefered positions of employee2,
+            "preferred_position": list of preferred positions of employee2,
             "email": email of employee2
         }, 
         ...]}
@@ -55,7 +58,7 @@ returns the information of the newly created employee
             "start_month": employee1 start_month,
             "end_month": employee1 end_month,
             "job_accepted": id of the job accepted employee1,
-            "prefered_position": list of prefered positions of employee1, (should be empty)
+            "preferred_position": list of preferred positions of employee1, (should be empty)
             "email": email of employee1
         }}
 
@@ -71,7 +74,7 @@ returns information of the employee with id employee_id
             "start_month": employee1 start_month,
             "end_month": employee1 end_month,
             "job_accepted": id of the job accepted employee1,
-            "prefered_position": list of prefered positions of employee1,
+            "preferred_position": list of preferred positions of employee1,
             "email": email of employee1
         }}
 
@@ -87,7 +90,7 @@ returns information of the deleted employee
             "start_month": employee1 start_month,
             "end_month": employee1 end_month,
             "job_accepted": id of the job accepted employee1,
-            "prefered_position": list of prefered positions of employee1,
+            "preferred_position": list of preferred positions of employee1,
             "email": email of employee1
         }}
 
@@ -157,6 +160,19 @@ returns success response with the information of the employee
 link/api/employees/<int:employee_id>/rejectOffer/ [GET] let an employee with id employee_id reject the current job_offer
 returns success response with the information of the employee
 
+link/api/employees/<int:employee_id>/add_position/ [POST] add preferred position to the employee with id employee_id
+requires input {
+    "position": title/name of the position
+}
+fails if position already in the list of preferred position of the employee
+returns the information of the employee if successful
+
+link/api/employees/<int:employee_id>/remove_position/ [POST] remove the preferred position from the employee with id employee_id
+requires input {
+    "position": title/name of the position
+}
+returns the information of the employee if successful
+
 link/api/job_offers/ [POST] create a job offer
 requires input
 {
@@ -165,6 +181,7 @@ requires input
 	'start_month': start month,
 	'end_month': end month,
 	'open_slots': open_slots,
+    'position': position of the offer, default to be "Any"
 }
 returns {"success": true, "data": {
     'id': job offer id,
@@ -173,6 +190,7 @@ returns {"success": true, "data": {
 	'start_month': start month,
 	'end_month': end month,
 	'open_slots': open_slots,
+    'position': position of the offer
 }}
 
 link/api/job_offers/ [GET] returns a list of all job offers
@@ -183,6 +201,7 @@ link/api/job_offers/ [GET] returns a list of all job offers
 	'start_month': start month,
 	'end_month': end month,
 	'open_slots': open_slots,
+    'position': position of the offer
 },
 {
     'id': job offer id,
@@ -191,6 +210,7 @@ link/api/job_offers/ [GET] returns a list of all job offers
 	'start_month': start month,
 	'end_month': end month,
 	'open_slots': open_slots,
+    'position': position of the offer
 }, ...
 ]}
 
@@ -202,6 +222,7 @@ link/api/job_offers/<int:job_offer_id>/ [GET] returns the information of the job
 	'start_month': start month,
 	'end_month': end month,
 	'open_slots': open_slots,
+    'position': position of the offer
 }}
 
 link/api/job_offers/<int:job_offer_id>/ [DELETE] deletes the job offer with id job_offer_id
@@ -213,4 +234,5 @@ returns the information of the deleted job offer
 	'start_month': start month,
 	'end_month': end month,
 	'open_slots': open_slots,
+    'position': position of the offer
 }}

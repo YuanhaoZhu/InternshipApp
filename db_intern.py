@@ -15,6 +15,32 @@ association_table1 = db.Table(
 #     db.Column("student_id", db.Integer, db.ForeignKey("user.id"))
 # )
 
+def int_to_month(mon):
+    if mon == 1:
+        return "Jan"
+    elif mon == 2:
+        return "Feb"
+    elif mon == 3:
+        return "Mar"
+    elif mon == 4:
+        return "Apr"
+    elif mon == 5:
+        return "May"
+    elif mon == 6:
+        return "Jun"
+    elif mon == 7:
+        return "Jul"
+    elif mon == 8:
+        return "Aug"
+    elif mon == 9:
+        return "Sep"
+    elif mon == 10:
+        return "Oct"
+    elif mon == 11:
+        return "Nov"
+    elif mon == 12:
+        return "Dec"
+
 # your classes here
 class Employee(db.Model):
     __tablename__ = 'employee' #same name as py class
@@ -52,10 +78,10 @@ class Employee(db.Model):
             "picture": self.picture,
             "gpa": self.gpa,
             "past_work_experience": self.past_work_experience,
-            "start_month": self.start_month,
-            "end_month": self.end_month,
+	    	'start_month': int_to_month(self.start_month),
+	    	'end_month': int_to_month(self.end_month),
             "job_accepted": "None" if self.job_accepted == -1 else Joboffer.query.filter_by(id = self.job_accepted).first().title,
-            "prefered_position": [t.title for t in PreferedPosition.query.filter_by(employee_id=self.id).all()],
+            "preferred_position": [t.title for t in PreferedPosition.query.filter_by(employee_id=self.id).all()],
             "email": self.email
         }
 
@@ -69,32 +95,19 @@ class Employee(db.Model):
     #         'students': [],
     #     }
 class PreferedPosition(db.Model):
-    __tablename__ = 'preferedposition'
+    __tablename__ = 'preferredposition'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
     employee_id = db.Column(db.Integer, db.ForeignKey('employee.id'), nullable=False)
-    employer_id = db.Column(db.Integer, db.ForeignKey('employer.id'), nullable=False)
-    start_month = db.Column(db.Integer, nullable=False)
-    end_month = db.Column(db.Integer, nullable=False)
-    open_slots = db.Column(db.Integer, nullable=False)
 
     def __init__(self, **kwargs):
         self.title = kwargs.get('title', '')
         self.employee_id = kwargs.get('employee_id')
-        self.employer_id = kwargs.get('employer_id')
-        self.start_month = kwargs.get("start_month", 0)
-        self.end_month = kwargs.get("end_month", 0)
-        self.open_slots = kwargs.ger("open_slots", 0)
 
     def serialize(self):
         return{
             'id': self.id,
-            'title': self.title,
-            'employee_id': self.employee_id,
-            'employer_id': self.employer_id,
-	        'start_month': self.start_month,
-	        'end_month': self.end_month,
-	        'open_slots': self.open_slots,
+            'title': self.title
         }
 
 class Employer(db.Model):
@@ -142,20 +155,23 @@ class Joboffer(db.Model):
     start_month = db.Column(db.Integer, nullable=False)
     end_month = db.Column(db.Integer, nullable=False)
     open_slots = db.Column(db.Integer, nullable=False)
+    position = db.Column(db.String, nullable=False)
 
     def __init__(self, **kwargs):
         self.title = kwargs.get('title', '')
         self.employer_id = kwargs.get('employer_id')
         self.start_month = kwargs.get("start_month", 0)
         self.end_month = kwargs.get("end_month", 0)
-        self.open_slots = kwargs.ger("open_slots", 0)
+        self.open_slots = kwargs.get("open_slots", 0)
+        self.position = kwargs.get("position")
 
     def serialize(self):
         return{
             'id': self.id,
             'title': self.title,
             'employer_id': self.employer_id,
-	    	'start_month': self.start_month,
-	    	'end_month': self.end_month,
+	    	'start_month': int_to_month(self.start_month),
+	    	'end_month': int_to_month(self.end_month),
 	    	'open_slots': self.open_slots,
+            'position': self.position
         }
