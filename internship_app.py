@@ -233,7 +233,7 @@ def delete_job_offer(job_offer_id):
     db.session.commit()
     return success_response(job_offer.serialize())
 
-@app.route("/api/employees/filter_by_location")
+@app.route("/api/employees/filter_by_location/")
 def filter_employees_by_location():
     body = json.loads(request.data)
     location = body.get('location')
