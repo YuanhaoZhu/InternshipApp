@@ -2,7 +2,7 @@
 backend:
 all failure responses are {"success": False, "error": the error message}
 
-let link = the heroku link for the app
+let link = https://cs1998internapp.herokuapp.com
 
 All start_month and end_month should be in format "Jan", "Feb", "Mar", "Apr",
 "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
