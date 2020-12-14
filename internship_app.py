@@ -42,13 +42,12 @@ def create_employees():
     end_month = body.get("end_month")
     email = body.get("email")
     if name is None or gpa is None or location is None or start_month is None or end_month is None:
-        return failure_response("Incomplete field!")
+        return failure_response("Incomplete field!", 400)
     new_employee = Employee(name = name, gpa = gpa, location = location, picture = picture, past_work_experience = past_work_experience, start_month = start_month, end_month = end_month, email = email)
     print("new_employee:",new_employee)
     db.session.add(new_employee)
     db.session.commit()
     return success_response(new_employee.serialize(), 201)
-
 
 @app.route("/api/employees/<int:employee_id>/", methods=["DELETE"])
 def delete_employee(employee_id):
@@ -59,6 +58,17 @@ def delete_employee(employee_id):
     db.session.commit()
     return success_response(employee.serialize())
 
+@app.route("/api/employees/<int:employee_id>/")
+def get_employee(employee_id):
+    employee = Employee.query.filter_by(id=employee_id).first()
+    if employee is None:
+        return failure_response('Employee not found!')
+    return success_response(employee.serialize())
+
+@app.route("/api/employers/")
+def get_employers():
+    return success_response([t.serialize() for t in Employer.query.all()])
+
 @app.route("/api/employers/", methods=["POST"])
 def create_employer():
     body = json.loads(request.data)
@@ -66,7 +76,7 @@ def create_employer():
     location = body.get('location')
     picture = body.get("picture", default_picture)
     if name is None or location is None :
-        return failure_response("Incomplete field!")
+        return failure_response("Incomplete field!", 400)
     new_employer = Employer(name=name, location=location, picture = picture)
     db.session.add(new_employer)
     db.session.commit()
@@ -79,8 +89,17 @@ def get_employer(employer_id):
         return failure_response('Employer not found!')
     return success_response(employer.serialize())
 
+@app.route("/api/employers/<int:employer_id>/", methods = ["DELETE"])
+def delete_employer(employer_id):
+    employer = Employer.query.filter_by(id=employer_id).first()
+    if employer is None:
+        return failure_response('Employer not found!')
+    db.session.delete(employer)
+    db.session.commit()
+    return success_response(employer.serialize())
+
 @app.route("/api/employees/<int:employee_id>/acceptOffer/", methods=["POST"])
-def add_employer():
+def accept_offer():
     employee = Employee.query.filter_by(id=employee_id).first()
     if employee is None:
         return failure_response('Employee not found!')
@@ -88,22 +107,29 @@ def add_employer():
     job_offer_id=body.get('job_offer_id')
     job_offer =  Joboffer.query.filter_by(id=job_offer_id).first()
     if job_offer is None:
-        return failure_response('Employer not found!')
-    # if body.get('type') is None:
-    #     return failure_response('Type not found!')
-    # if body.get('type') == "student":
-    #     course.students.append(user)
-    #     user.courses_s.append(course)
-    # elif body.get('type') == "instructor":
-    #     course.students.append(user)
-    #     user.courses_i.append(course)
-    #     print("instructor")
-    # else:
-    #    return failure_response("Invalid type!")
+        return failure_response('Job offer not found!', 400)
     if job_offer.open_slots < 1:
-        return failure_response("Job offer unavailable")
+        return failure_response("Job offer unavailable", 400)
+    if employee.job_accepted != -1:
+        return failure_response("Already accepted a job", 400)
     employee.job_accepted = job_offer_id
     job_offer.open_slots -= 1
+    db.session.commit()
+    return success_response(employee.serialize())
+
+@app.route("/api/employees/<int:employee_id>/rejectOffer/")
+def reject_offer():
+    employee = Employee.query.filter_by(id=employee_id).first()
+    if employee is None:
+        return failure_response('Employee not found!')
+    if employee.job_accepted == -1:
+        return failure_response("No job offer to reject", 400)
+    job_offer_id = employee.job_accepted
+    job_offer =  Joboffer.query.filter_by(id=job_offer_id).first()
+    if job_offer is None:
+        return failure_response('Job offer not found!', 400)
+    job_offer.open_slots += 1
+    employee.job_accepted = -1
     db.session.commit()
     return success_response(employee.serialize())
 
@@ -116,33 +142,35 @@ def create_job_offer():
     end_month = body.get("end_month")
     employer = Employer.query.filter_by(id=employer_id).first()
     if name is None or start_month is None or end_month is None:
-        return failure_response("Incomplete field!")
+        return failure_response("Incomplete field!", 400)
     if employer is None:
         return failure_response("Employer not found")
     new_job_offer = Joboffer(title=title, employer_id=employer_id, start_month = start_month, end_month = end_month)
     db.session.add(new_job_offer)
     db.session.commit()
     return success_response(new_job_offer.serialize())
-#assignment routes
 
-# @app.route("/api/courses/<int:course_id>/assignment/", methods=["POST"])
-# def add_assignment(course_id):
-#     course = Course.query.filter_by(id=course_id).first()
-#     if course is None:
-#         return failure_response('Course not found!')
-#     body = json.loads(request.data)
-#     title = body.get('title')
-#     due_date = body.get('due_date')
+@app.route("/api/job_offers/")
+def get_job_offers():
+    return success_response([t.serialize() for t in Joboffer.query.all()])
 
-#     if title is None or due_date is None:
-#         return failure_response("Incomplete field!")
-#     new_assignment = Assignment(title=title, due_date=due_date, course_id=course_id)
-#     db.session.add(new_assignment)
-#     db.session.commit()
-#     response = new_assignment.serialize()
-#     response["course"] = Course.query.filter_by(id = course_id).first().serialize()
-#     return success_response(response)
+@app.route("/api/job_offers/<int:job_offer_id>/")
+def get_job_offer(job_offer_id):
+    job_offer = Joboffer.query.filter_by(id=job_offer_id).first()
+    if job_offer is None:
+        return failure_response('job offer not found!')
+    return success_response(job_offer.serialize())
 
+@app.route("/api/job_offers/<int:job_offer_id>/", methods=["DELETE"])
+def delete_job_offer(job_offer_id):
+    job_offer = Joboffer.query.filter_by(id=job_offer_id).first()
+    if job_offer is None:
+        return failure_response('job offer not found!')
+    db.session.delete(job_offer)
+    for e in Employee.query.filter_by(job_accepted=job_offer_id).all():
+        e.job_accepted = -1
+    db.session.commit()
+    return success_response(job_offer.serialize())
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
