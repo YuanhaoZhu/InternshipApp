@@ -24,7 +24,6 @@ class StudentDetailViewController: UIViewController {
     var skillContent: UILabel!
     //end of studentSkillView
 
-    
     var studentStatsView: UIView!
     //inside studentStatsView
     var studentStatsTitle: UILabel!
@@ -36,9 +35,18 @@ class StudentDetailViewController: UIViewController {
     var selfIntroTitle: UILabel!
     var selfIntroContent: UILabel!
     //end of selfIntroView
-    
+ 
     
     //weak var delegate: jobDelegate?
+    init(student: Student) {
+        super.init(nibName: nil, bundle: nil)
+        //self.studentName.text = student.name
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    
     
 
     override func viewDidLoad() {
@@ -68,7 +76,7 @@ class StudentDetailViewController: UIViewController {
         studentName = UILabel()
         studentName.translatesAutoresizingMaskIntoConstraints = false
         studentName.font = UIFont(name: "Rubik-Medium", size: 24)
-        studentName.text = "UX Designer Intern"
+        studentName.text = "Jessy"
         studentName.textAlignment = .left
         studentName.textColor = .black
         studentHeaderView.addSubview(studentName)
@@ -77,14 +85,14 @@ class StudentDetailViewController: UIViewController {
         schoolName.translatesAutoresizingMaskIntoConstraints = false
         schoolName.font = UIFont(name: "Rubik-Light", size: 16)
         schoolName.textAlignment = .left
-        schoolName.text = "Amazon"
+        schoolName.text = "Cornell University"
         studentHeaderView.addSubview(schoolName)
         
         locationLabel = UILabel()
         locationLabel.translatesAutoresizingMaskIntoConstraints = false
         locationLabel.font = UIFont(name: "Rubik-Light", size: 16)
         locationLabel.textColor = #colorLiteral(red: 0.6431372549, green: 0.6352941176, blue: 0.6352941176, alpha: 1)
-        locationLabel.text = "Irvine, CA"
+        locationLabel.text = "Ithaca, NY"
         locationLabel.textAlignment = .left
         studentHeaderView.addSubview(locationLabel)
         
@@ -107,7 +115,7 @@ class StudentDetailViewController: UIViewController {
         skillTitle.translatesAutoresizingMaskIntoConstraints = false
         skillTitle.font = UIFont(name: "Rubik-Light", size: 16)
         skillTitle.textColor = #colorLiteral(red: 0.6431372549, green: 0.6352941176, blue: 0.6352941176, alpha: 1)
-        skillTitle.text = "Skill Needed"
+        skillTitle.text = "Skills"
         skillTitle.textAlignment = .left
         studentSkillView.addSubview(skillTitle)
         
@@ -132,14 +140,14 @@ class StudentDetailViewController: UIViewController {
         studentStatsTitle.translatesAutoresizingMaskIntoConstraints = false
         studentStatsTitle.font = UIFont(name: "Rubik-Light", size: 16)
         studentStatsTitle.textColor = #colorLiteral(red: 0.6431372549, green: 0.6352941176, blue: 0.6352941176, alpha: 1)
-        studentStatsTitle.text = "Requirement"
+        studentStatsTitle.text = "Additional Info"
         studentStatsTitle.textAlignment = .left
         studentStatsView.addSubview(studentStatsTitle)
         
         studentStatsContent = UILabel()
         studentStatsContent.translatesAutoresizingMaskIntoConstraints = false
         studentStatsContent.font = UIFont(name: "Rubik-Regular", size: 14)
-        studentStatsContent.text = "GPA > 3.0 \nSenior or Master \n3+ years workingexperience as a Data Analyst"
+        studentStatsContent.text = "GPA > 3.0 \nSenior or Master \n3+ years experience as a Data Analyst"
         studentStatsContent.numberOfLines = 6
         studentStatsContent.textAlignment = .left
         studentStatsView.addSubview(studentStatsContent)
@@ -157,7 +165,7 @@ class StudentDetailViewController: UIViewController {
         selfIntroTitle = UILabel()
         selfIntroTitle.translatesAutoresizingMaskIntoConstraints = false
         selfIntroTitle.font = UIFont(name: "Rubik-Medium", size: 20)
-        selfIntroTitle.text = "Job Description"
+        selfIntroTitle.text = "Self Introduction"
         selfIntroTitle.textAlignment = .left
         
         selfIntroView.addSubview(selfIntroTitle)
@@ -166,7 +174,7 @@ class StudentDetailViewController: UIViewController {
         selfIntroContent = UILabel()
         selfIntroContent.translatesAutoresizingMaskIntoConstraints = false
         selfIntroContent.font = UIFont(name: "Rubik-Regular", size: 14)
-        selfIntroContent.text = "We are looking for future Amazon interns to join us for summer 2021. Amazon interns have the opportunity to work alongside the industry’s brightest designers who innovate everyday on behalf of our customers. As a UX Design Intern, you will contribute to Twitch Prime's vision, and collaborate with a team that defines and designs user interfaces, systems, and interaction, visual, motion, and voice design patterns. "
+        selfIntroContent.text = "UI/UX designer and front-end developer with experience designing and building web apps and a knack for creating a valuable and enjoyable user experience. UI/UX designer and front-end developer with experience designing and building web apps and a knack for creating a valuable and enjoyable user experience."
         selfIntroContent.textColor = #colorLiteral(red: 0.6431372549, green: 0.6352941176, blue: 0.6352941176, alpha: 1)
         selfIntroContent.numberOfLines = 30
         selfIntroContent.textAlignment = .left
@@ -183,10 +191,7 @@ class StudentDetailViewController: UIViewController {
         
         selfIntroView.addSubview(selfIntroContent)
         //end of selfIntroView
-        
-
-        
-        
+                
         setupConstraints()
     }
     
@@ -222,8 +227,8 @@ class StudentDetailViewController: UIViewController {
             //locationLabel.trailingAnchor.constraint(equalTo: studentHeaderView.trailingAnchor, constant: -padding)
             ])
         NSLayoutConstraint.activate([
-            openTimeLabel.topAnchor.constraint(equalTo: studentName.bottomAnchor, constant: 10),
-            openTimeLabel.leadingAnchor.constraint(equalTo: locationLabel.trailingAnchor, constant: 10),
+            openTimeLabel.topAnchor.constraint(equalTo: schoolName.bottomAnchor, constant: 10),
+            openTimeLabel.leadingAnchor.constraint(equalTo: studentHeaderView.leadingAnchor, constant: padding),
             //locationLabel.trailingAnchor.constraint(equalTo: studentHeaderView.trailingAnchor, constant: -padding)
             ])
         
@@ -290,8 +295,7 @@ class StudentDetailViewController: UIViewController {
             selfIntroContent.leadingAnchor.constraint(equalTo: selfIntroView.leadingAnchor, constant: 16),
             selfIntroContent.trailingAnchor.constraint(equalTo: selfIntroView.trailingAnchor, constant: -16)
             ])
-    
-
-
+        
 }
+    
 }

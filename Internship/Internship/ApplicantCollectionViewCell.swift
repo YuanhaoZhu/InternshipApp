@@ -117,8 +117,8 @@ class ApplicantCollectionViewCell: UICollectionViewCell {
         studentNameLabel.text = student.name
         schoolLabel.text = "Cornell University"
         preferedPositionLabel.text = "UX Designer"
-        locationLabel.text = "Ithaca, NY"
-        durationLabel.text = "May - July, 2021"
+        locationLabel.text = student.location
+        durationLabel.text = "\(student.startMonth)" + "-" + "\(student.endMonth)"
     }
     
     required init?(coder: NSCoder) {

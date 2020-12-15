@@ -139,7 +139,7 @@ class JobViewController: UIViewController {
         requirementContent = UILabel()
         requirementContent.translatesAutoresizingMaskIntoConstraints = false
         requirementContent.font = UIFont(name: "Rubik-Regular", size: 14)
-        requirementContent.text = "GPA > 3.0 \nSenior or Master \n3+ years workingexperience as a Data Analyst"
+        requirementContent.text = "GPA > 3.0 \nSenior or Master \n3+ years experience as a Data Analyst"
         requirementContent.numberOfLines = 6
         requirementContent.textAlignment = .left
         requirementView.addSubview(requirementContent)
@@ -166,7 +166,7 @@ class JobViewController: UIViewController {
         descriptionContent = UILabel()
         descriptionContent.translatesAutoresizingMaskIntoConstraints = false
         descriptionContent.font = UIFont(name: "Rubik-Regular", size: 14)
-        descriptionContent.text = "We are looking for future Amazon interns to join us for summer 2021. Amazon interns have the opportunity to work alongside the industry’s brightest designers who innovate everyday on behalf of our customers. As a UX Design Intern, you will contribute to Twitch Prime's vision, and collaborate with a team that defines and designs user interfaces, systems, and interaction, visual, motion, and voice design patterns. "
+        descriptionContent.text = "We are looking for future Amazon interns to join us for summer 2021. Amazon interns have the opportunity to work alongside the industry’s brightest designers who innovate everyday on behalf of our customers. As a UX Design Intern, you will contribute to Twitch Prime's vision, and collaborate with a team that defines and designs user interfaces, systems,... "
         descriptionContent.textColor = #colorLiteral(red: 0.6431372549, green: 0.6352941176, blue: 0.6352941176, alpha: 1)
         descriptionContent.numberOfLines = 30
         descriptionContent.textAlignment = .left

@@ -29,6 +29,10 @@ class StudentViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.9529411765, blue: 0.9529411765, alpha: 1)
         title = "Student Home"
+        
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tapGesture)
+        tapGesture.cancelsTouchesInView = false
 
         // Do any additional setup after loading the view.
         findYourInternText = UILabel()

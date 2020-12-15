@@ -23,6 +23,7 @@ class RecruiterViewController: UIViewController{
     var backButton: UIButton!
     private var studentList: [Student] = []
 
+
     
     init(studentList: [Student]) {
         super.init(nibName: nil, bundle: nil)
@@ -38,6 +39,10 @@ class RecruiterViewController: UIViewController{
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.9529411765, blue: 0.9529411765, alpha: 1)
         title = "Recruiter Home"
+        
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tapGesture)
+        tapGesture.cancelsTouchesInView = false
 
         // Do any additional setup after loading the view.
         findYourInternText = UILabel()
@@ -64,7 +69,7 @@ class RecruiterViewController: UIViewController{
         recomPosition = UILabel()
         recomPosition.translatesAutoresizingMaskIntoConstraints = false
         recomPosition.font = UIFont(name: "Rubik-Medium", size: 20)
-        recomPosition.text = "Recommended Position"
+        recomPosition.text = "Recommended Candidates"
         recomPosition.textAlignment = .left
         recomPosition.textColor = .black
         view.addSubview(recomPosition)
@@ -241,7 +246,9 @@ extension RecruiterViewController: UICollectionViewDelegateFlowLayout {
 extension RecruiterViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.ApplicantCollectionView {
-            let vc = StudentDetailViewController()
+            let student = studentList[indexPath.count]
+            //let student = studentList[0]
+            let vc = StudentDetailViewController(student: student)
             navigationController?.pushViewController(vc, animated: true)
         }
     }
