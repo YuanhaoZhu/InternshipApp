@@ -28,7 +28,7 @@ class NetworkManager {
                 decodeAndPrint()
                 if let studentsData = try? jsonDecoder.decode(StudentDataResponse.self, from: data) {
                     // Instructions: Use completion to handle response
-                    let students = studentsData.studentList
+                    let students = studentsData.data
                     completion(students)
                 }
                 else {
@@ -37,9 +37,9 @@ class NetworkManager {
                 }
             case .failure(let error):
                 print(error.localizedDescription)
-                
+
             }
-        
+
         }
     }
     
@@ -74,7 +74,7 @@ class NetworkManager {
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
                 if let studentsData = try? jsonDecoder.decode(StudentDataResponse.self, from: data) {
                     // Instructions: Use completion to handle response
-                    let students = studentsData.studentList
+                    let students = studentsData.data
                     completion(students)
                 }
             case .failure(let error):

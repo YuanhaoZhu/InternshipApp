@@ -1,17 +1,18 @@
 
 import Foundation
 
-struct Response <T: Codable>: Codable {
-    let data: T
-    let success: Bool
-}
+//struct Response <T: Codable>: Codable {
+//    let data: T
+//    let success: Bool
+//}
 
-// TODO: Define model for our restaurant resposne
+//TODO: Define model for our restaurant resposne
 struct StudentDataResponse: Codable {
     /* Instructions: Take a look at the JSON response we get from our HTTP Requests.
      * Model your RestaurantsDataResponse object after the JSON response.
      */
-    var studentList: [Student]
+    var data: [Student]
+    let success: Bool
 }
 
 // TODO: Define model for our restaurant
