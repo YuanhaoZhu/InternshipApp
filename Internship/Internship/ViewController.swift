@@ -8,6 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
 
     //create 2 button on the home screen
     var welcomeQus: UILabel!
@@ -15,7 +16,8 @@ class ViewController: UIViewController {
     var recruiterButton: UIButton!
     var welcomePic: UIImageView!
     let padding: CGFloat = 28
-
+    private var studentList: [Student] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.9529411765, blue: 0.9529411765, alpha: 1)
@@ -61,8 +63,19 @@ class ViewController: UIViewController {
         view.sendSubviewToBack(welcomePic)
 
         setupConstraints()
+        getStudents()
+        if let navController = navigationController {
+            System.clearNavigationBar(forBar: navController.navigationBar)
+            navController.view.backgroundColor = .clear
+        }
     }
     
+    private func getStudents() {
+        NetworkManager.getStudents { (students) in
+            self.studentList = students
+            //self.ApplicantCollectionView.reloadData()
+        }
+    }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
@@ -107,7 +120,7 @@ class ViewController: UIViewController {
     
     //button click to recruiter page
     @objc func pushRecruiterPage() {
-        let vc = RecruiterViewController()
+        let vc = RecruiterViewController(studentList:studentList)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

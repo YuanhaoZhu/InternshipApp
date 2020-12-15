@@ -13,6 +13,8 @@ class PositionCollectionViewCell: UICollectionViewCell {
     var companyLabel: UILabel!
     var locationLabel: UILabel!
     var durationLabel: UILabel!
+    
+
 
     //need to override
     override init(frame: CGRect) {

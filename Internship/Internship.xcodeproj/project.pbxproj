@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		499AEF15AB41CFAF152A4C06 /* Pods_Internship.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B79893CB170140A777EC6E5 /* Pods_Internship.framework */; };
+		F354A2A12587EC8D00DEFB1A /* StudentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354A2A02587EC8D00DEFB1A /* StudentDetailViewController.swift */; };
+		F354A2A725880B8B00DEFB1A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354A2A625880B8B00DEFB1A /* NetworkManager.swift */; };
+		F354A2AA25880D8A00DEFB1A /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354A2A925880D8A00DEFB1A /* Student.swift */; };
 		F3F9180E257EB12B00E72EBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F9180D257EB12B00E72EBF /* AppDelegate.swift */; };
 		F3F91810257EB12B00E72EBF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F9180F257EB12B00E72EBF /* SceneDelegate.swift */; };
 		F3F91812257EB12B00E72EBF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F91811257EB12B00E72EBF /* ViewController.swift */; };
@@ -19,9 +23,20 @@
 		F3F9182E257EB9EF00E72EBF /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3F9182B257EB9EF00E72EBF /* Rubik-Light.ttf */; };
 		F3F91837258014D000E72EBF /* PositionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F91836258014D000E72EBF /* PositionCollectionViewCell.swift */; };
 		F3F9183A2580220E00E72EBF /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F918392580220E00E72EBF /* Position.swift */; };
+		F3F9183D25829ED400E72EBF /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F9183C25829ED400E72EBF /* JobViewController.swift */; };
+		F3F9184125854E7300E72EBF /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F9184025854E7300E72EBF /* FilterCollectionViewCell.swift */; };
+		F3F9184425854F1500E72EBF /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F9184325854F1500E72EBF /* Filter.swift */; };
+		F3F9184B2585582900E72EBF /* ApplicantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F9184A2585582900E72EBF /* ApplicantCollectionViewCell.swift */; };
+		F3F9184F2586880E00E72EBF /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F9184E2586880E00E72EBF /* CustomNavigationBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B79893CB170140A777EC6E5 /* Pods_Internship.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Internship.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E79B04D6513C24D64B5423B /* Pods-Internship.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Internship.release.xcconfig"; path = "Target Support Files/Pods-Internship/Pods-Internship.release.xcconfig"; sourceTree = "<group>"; };
+		78065A7D6591E960D6E79404 /* Pods-Internship.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Internship.debug.xcconfig"; path = "Target Support Files/Pods-Internship/Pods-Internship.debug.xcconfig"; sourceTree = "<group>"; };
+		F354A2A02587EC8D00DEFB1A /* StudentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailViewController.swift; sourceTree = "<group>"; };
+		F354A2A625880B8B00DEFB1A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		F354A2A925880D8A00DEFB1A /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		F3F9180A257EB12B00E72EBF /* Internship.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Internship.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F9180D257EB12B00E72EBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3F9180F257EB12B00E72EBF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +51,11 @@
 		F3F9182B257EB9EF00E72EBF /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
 		F3F91836258014D000E72EBF /* PositionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3F918392580220E00E72EBF /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		F3F9183C25829ED400E72EBF /* JobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobViewController.swift; sourceTree = SOURCE_ROOT; };
+		F3F9184025854E7300E72EBF /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		F3F9184325854F1500E72EBF /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		F3F9184A2585582900E72EBF /* ApplicantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantCollectionViewCell.swift; sourceTree = "<group>"; };
+		F3F9184E2586880E00E72EBF /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,17 +63,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				499AEF15AB41CFAF152A4C06 /* Pods_Internship.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9CD43DCE1DE1B45683439EFA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				78065A7D6591E960D6E79404 /* Pods-Internship.debug.xcconfig */,
+				3E79B04D6513C24D64B5423B /* Pods-Internship.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B901C2EA15DDE034B14A2687 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2B79893CB170140A777EC6E5 /* Pods_Internship.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F3F91801257EB12B00E72EBF = {
 			isa = PBXGroup;
 			children = (
 				F3F9180C257EB12B00E72EBF /* Internship */,
 				F3F9180B257EB12B00E72EBF /* Products */,
+				9CD43DCE1DE1B45683439EFA /* Pods */,
+				B901C2EA15DDE034B14A2687 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,9 +115,17 @@
 				F3F91829257EB9EF00E72EBF /* Rubik-Medium.ttf */,
 				F3F9182A257EB9EF00E72EBF /* Rubik-Regular.ttf */,
 				F3F91823257EB73300E72EBF /* StudentViewController.swift */,
+				F354A2A625880B8B00DEFB1A /* NetworkManager.swift */,
+				F354A2A925880D8A00DEFB1A /* Student.swift */,
+				F3F91826257EB75800E72EBF /* RecruiterViewController.swift */,
+				F3F9183C25829ED400E72EBF /* JobViewController.swift */,
+				F354A2A02587EC8D00DEFB1A /* StudentDetailViewController.swift */,
 				F3F918392580220E00E72EBF /* Position.swift */,
 				F3F91836258014D000E72EBF /* PositionCollectionViewCell.swift */,
-				F3F91826257EB75800E72EBF /* RecruiterViewController.swift */,
+				F3F9184E2586880E00E72EBF /* CustomNavigationBar.swift */,
+				F3F9184A2585582900E72EBF /* ApplicantCollectionViewCell.swift */,
+				F3F9184025854E7300E72EBF /* FilterCollectionViewCell.swift */,
+				F3F9184325854F1500E72EBF /* Filter.swift */,
 				F3F91816257EB12D00E72EBF /* Assets.xcassets */,
 				F3F91818257EB12D00E72EBF /* LaunchScreen.storyboard */,
 				F3F9181B257EB12D00E72EBF /* Info.plist */,
@@ -92,9 +140,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3F9181E257EB12D00E72EBF /* Build configuration list for PBXNativeTarget "Internship" */;
 			buildPhases = (
+				364DA2C571717F78FFE3FB5C /* [CP] Check Pods Manifest.lock */,
 				F3F91806257EB12B00E72EBF /* Sources */,
 				F3F91807257EB12B00E72EBF /* Frameworks */,
 				F3F91808257EB12B00E72EBF /* Resources */,
+				C0FAA07892407E80FB17B25F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,17 +202,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		364DA2C571717F78FFE3FB5C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Internship-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0FAA07892407E80FB17B25F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Internship/Pods-Internship-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Internship/Pods-Internship-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Internship/Pods-Internship-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F3F91806257EB12B00E72EBF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3F9184F2586880E00E72EBF /* CustomNavigationBar.swift in Sources */,
 				F3F9183A2580220E00E72EBF /* Position.swift in Sources */,
+				F354A2A12587EC8D00DEFB1A /* StudentDetailViewController.swift in Sources */,
+				F3F9184425854F1500E72EBF /* Filter.swift in Sources */,
+				F3F9184125854E7300E72EBF /* FilterCollectionViewCell.swift in Sources */,
 				F3F91837258014D000E72EBF /* PositionCollectionViewCell.swift in Sources */,
 				F3F91824257EB73300E72EBF /* StudentViewController.swift in Sources */,
 				F3F91812257EB12B00E72EBF /* ViewController.swift in Sources */,
+				F3F9183D25829ED400E72EBF /* JobViewController.swift in Sources */,
 				F3F91827257EB75800E72EBF /* RecruiterViewController.swift in Sources */,
+				F354A2A725880B8B00DEFB1A /* NetworkManager.swift in Sources */,
+				F3F9184B2585582900E72EBF /* ApplicantCollectionViewCell.swift in Sources */,
 				F3F9180E257EB12B00E72EBF /* AppDelegate.swift in Sources */,
+				F354A2AA25880D8A00DEFB1A /* Student.swift in Sources */,
 				F3F91810257EB12B00E72EBF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,6 +399,7 @@
 		};
 		F3F9181F257EB12D00E72EBF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78065A7D6591E960D6E79404 /* Pods-Internship.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -318,6 +419,7 @@
 		};
 		F3F91820257EB12D00E72EBF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E79B04D6513C24D64B5423B /* Pods-Internship.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

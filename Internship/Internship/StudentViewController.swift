@@ -6,6 +6,9 @@
 //
 
 import UIKit
+//protocol jobDelegate: class{
+//    func saveEdits(loc: Int, newSong: String?, newArtist: String?, newAlbum: String?)
+//}
 
 class StudentViewController: UIViewController {
     var findYourInternText: UILabel!
@@ -20,7 +23,7 @@ class StudentViewController: UIViewController {
     var positionCollectionView: UICollectionView!
     var positionCellReuseIdentifier = "positionCellReuseIdentifier"
     var positionList: [Position] = []
-    
+    var backButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +85,8 @@ class StudentViewController: UIViewController {
         recomPosition.textColor = .black
         view.addSubview(recomPosition)
         
+        
+
         let pos1 = Position(positionPicName: "amazonLogo", positionName: "UX Designer Intern", companyName: "Amazon", locationName: "Irvine, CA", durationString: "June-July, 2020")
         let pos2 = Position(positionPicName: "amazonLogo", positionName: "UX Designer Intern", companyName: "Amazon", locationName: "Irvine, CA", durationString: "June-July, 2020")
         let pos3 = Position(positionPicName: "amazonLogo", positionName: "UX Designer Intern", companyName: "Amazon", locationName: "Irvine, CA", durationString: "June-July, 2020")
@@ -102,18 +107,40 @@ class StudentViewController: UIViewController {
         positionCollectionView = UICollectionView(frame: .zero, collectionViewLayout: positionLayout)
         //reuse restaurant cell
         positionCollectionView.register(PositionCollectionViewCell.self, forCellWithReuseIdentifier: positionCellReuseIdentifier)
-                positionCollectionView.dataSource = self
-                positionCollectionView.delegate = self
+        positionCollectionView.dataSource = self
+        positionCollectionView.delegate = self
         positionCollectionView.translatesAutoresizingMaskIntoConstraints = false
         positionCollectionView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.9529411765, blue: 0.9529411765, alpha: 1)
         view.addSubview(positionCollectionView)
+     
+        
+        backButton = UIButton()
+        backButton.setImage(UIImage(named: "backButton"), for: .normal)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        backButton.addTarget(self, action: #selector(backButtonPress), for: .touchUpInside)
         
         
         setupConstraints()
+        
+        if let navController = navigationController {
+            System.clearNavigationBar(forBar: navController.navigationBar)
+            navController.view.backgroundColor = .clear
+        }
     }
     
-
+    @objc func backButtonPress(){
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
+    
     func setupConstraints() {
+        NSLayoutConstraint.activate([
+            backButton.widthAnchor.constraint(equalToConstant: 30),
+            backButton.heightAnchor.constraint(equalToConstant: 30)
+        ])
+        
+        
         NSLayoutConstraint.activate([
             findYourInternText.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 47),
             findYourInternText.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding),
@@ -186,19 +213,17 @@ extension StudentViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+//click on the cell of job posting, push job detail view
+extension StudentViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //let index = indexPath.item
+        //let newViewController = JobViewController()
+        //newViewController.delegate = self
+        let vc = JobViewController()
+        navigationController?.pushViewController(vc, animated: true)
+        //filterCollectionView.reloadData()
+        //restaurantCollectionView.reloadData()
+    }
+}
 
-//extension ViewController: UICollectionViewDelegate {
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        if collectionView == self.filterCollectionView {
-//            let index = indexPath.item
-//            var filter = filterList[index]
-//                displayList.append(contentsOf: filter.restByFilter)
-//                displayList = Array(Set(displayList))
-//                restaurants = displayList
-//        }
-//        //filterCollectionView.reloadData()
-//        restaurantCollectionView.reloadData()
-//    }
-//}
 
